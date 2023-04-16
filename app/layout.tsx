@@ -1,4 +1,7 @@
 import './globals.css'
+import { Poppins } from "next/font/google";
+
+const poppins = Poppins({ weight: ["400", "500", "700"], subsets: ["latin"] });
 
 export const metadata = {
     title: "Semaphorus",
@@ -12,8 +15,8 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en">
+    <html lang="en" className={`${poppins.className}`}>
       <body>{children}</body>
     </html>
-  )
+  );
 }

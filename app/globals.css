@@ -19,3 +19,11 @@ body {
   color: rgb(var(--foreground-rgb));
   background: rgb(var(--background-rgb))
 }
+
+h1{
+  @apply text-4xl font-medium;
+}
+
+p{
+  @apply leading-7 [&:not(:first-child)]:mt-6;
+}

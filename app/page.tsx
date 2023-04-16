@@ -1,8 +1,5 @@
-import { Poppins } from "next/font/google";
 import { GroupResponse, SemaphoreSubgraph } from "@semaphore-protocol/data";
 import Dashboard from "@/components/Dashboard";
-
-const mainFont = Poppins({ weight: ["400", "500", "700"], subsets: ["latin"] });
 
 // const getGroupsFromSubgraph = async () => {
 //   const semaphoreSubgraph = new SemaphoreSubgraph();
@@ -53,13 +50,9 @@ export default async function Home() {
 
   return (
     <main className="flex min-h-screen flex-col items-center gap-24 p-24">
-      <h1 className={`${mainFont.className} text-4xl font-medium`}>
-        Semaphorus
-      </h1>
+      <h1>Semaphorus</h1>
 
       <Dashboard groups={groups} />
     </main>
   );
 }
-
-
