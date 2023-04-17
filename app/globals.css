@@ -3,14 +3,14 @@
 @tailwind utilities;
 
 :root {
-  --foreground-rgb: 0, 0, 0;
-  --background-rgb: 255, 255, 255;
+  --foreground-rgb: 2, 6, 23;
+  --background-rgb: 248, 250, 252;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-rgb: 0, 0, 0;
+    --foreground-rgb: 248, 250, 252;
+    --background-rgb: 2, 6, 23;
   }
 }
 
@@ -20,9 +20,12 @@ body {
 }
 
 h1{
-  @apply text-6xl font-semibold leading-10;
+  @apply text-5xl font-semibold leading-tight;
 }
 
+h2 {
+  @apply text-3xl font-semibold leading-tight;
+}
 p{
-  @apply leading-7 [&:not(:first-child)]:mt-6;
+  @apply leading-7;
 }
