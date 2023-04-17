@@ -1,7 +1,10 @@
 import './globals.css'
-import { Poppins } from "next/font/google";
+import { DM_Sans } from "next/font/google";
 
-const poppins = Poppins({ weight: ["400", "500", "700"], subsets: ["latin"] });
+const poppins = DM_Sans({
+  weight: ["400", "500", "700"],
+  subsets: ["latin"],
+});
 
 export const metadata = {
     title: "Semaphorus",
