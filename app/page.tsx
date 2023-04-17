@@ -50,7 +50,13 @@ export default async function Home() {
 
   return (
     <main className="flex min-h-screen flex-col items-center gap-24 p-24">
-      <h1>Semaphorus</h1>
+      <section className="w-full">
+        <p className="text-lg uppercase tracking-widest opacity-70">
+          Semaphorus &mdash; A Sempahore Explorer
+        </p>
+        <div className="p-3"></div>
+        <h1>See what&apos;s happening on Semaphore</h1>
+      </section>
 
       <Dashboard groups={groups} />
     </main>

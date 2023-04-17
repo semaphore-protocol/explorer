@@ -1,15 +1,28 @@
 import { GroupResponse, SemaphoreSubgraph } from "@semaphore-protocol/data";
+import StatCard from "../StatCard";
 
 export default function Dashboard({ groups }: { groups?: GroupResponse[] }) {
   return (
-    <section>
-      <div className="flex max-w-4xl flex-col items-center justify-center">
+    <section className="w-full">
+      <div className="flex w-full items-center justify-center gap-6">
         {!groups && <p>Loading...</p>}
+        {/* Number of groups */}
         {groups && (
-          <div className="flex flex-col border-2 p-6">
-            <p>#of groups</p>
-            <h1>{groups.length}</h1>
-          </div>
+          <>
+            <StatCard title="total groups" value={groups.length.toString()} />
+            <StatCard
+              title="total members"
+              value={`${groups.reduce((memberCount, currGroup) => {
+                return (memberCount += currGroup?.members?.length || 0);
+              }, 0)}`}
+            />
+            <StatCard
+              title="total verified proofs"
+              value={`${groups.reduce((proofCount, currGroup) => {
+                return (proofCount += currGroup?.verifiedProofs?.length || 0);
+              }, 0)}`}
+            />
+          </>
         )}
       </div>
     </section>
