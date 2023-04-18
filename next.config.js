@@ -1,7 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-    reactStrictMode: true,
-    basePath: "/semaphore-explorer"
+    reactStrictMode: true
 }
 
 module.exports = nextConfig
