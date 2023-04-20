@@ -19,6 +19,7 @@ export default function GroupCard({ group }: { group: GroupResponse }) {
             ? "1 verified proof"
             : `${group.verifiedProofs?.length} verified proofs`}
         </p>
+        <p className="text-slate-400">|</p>
         <p>
           👋🏽{" "}
           {group.members?.length === 1

@@ -24,12 +24,12 @@ function Groups({ groups }: { groups: GroupResponse[] }) {
   }, [searchTerm, _updateSearchTerm]);
 
   return (
-    <section className="flex max-w-2xl flex-col gap-6 rounded-md bg-slate-900 p-6">
+    <section className="flex max-w-2xl flex-col gap-6 rounded-md border border-slate-800 bg-slate-900 p-6">
       <h2>Groups</h2>
       <Search setSearchTerm={_updateSearchTerm} />
       {searchTerm && groupData.length === 0 && (
         <p className="text-center text-lg text-slate-600 dark:text-slate-400">
-          We couldn&apos;t find any groups with id &quot;{searchTerm}&quot;
+          We couldn&apos;t find any groups with that id
         </p>
       )}
       {groupData && (

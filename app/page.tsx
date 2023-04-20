@@ -1,9 +1,10 @@
 import Dashboard from "@/components/Dashboard";
 import Groups from "@/components/Groups";
 import { GroupResponse } from "@semaphore-protocol/data";
+import Image from "next/image";
 
-// const getGroupsFromSubgraph = async () => {
-//   const semaphoreSubgraph = new SemaphoreSubgraph();
+// const getGroupsFromSubgraph = async ({chain}:{chain?: string}) => {
+//   const semaphoreSubgraph = new SemaphoreSubgraph(chain || "goerli");
 //   try {
 //     const groupData = await semaphoreSubgraph.getGroups({
 //       members: true,
@@ -14,14 +15,12 @@ import { GroupResponse } from "@semaphore-protocol/data";
 //     return groupData;
 //   } catch (e) {
 //     console.log(e);
-
 //   }
 // };
 
 export default async function Home() {
   // const groups = await getGroupsFromSubgraph();
   // const group =
-
   const groups: GroupResponse[] = [
     {
       id: "9213",
@@ -162,8 +161,17 @@ export default async function Home() {
   ];
 
   return (
-    <main className="min-h-screen p-16 xl:px-36 xl:py-24">
-      <section className="flex items-center gap-4">
+    <main className="min-h-screen p-16 xl:px-36 xl:py-16">
+      <Image
+        src={
+          "https://em-content.zobj.net/source/microsoft-teams/337/milky-way_1f30c.png"
+        }
+        alt="Milky Way icon"
+        width={100}
+        height={100}
+        draggable={false}
+      />
+      <section className="mt-4 flex items-center gap-4">
         <section className="w-full">
           <p className="text-lg uppercase tracking-widest opacity-70">
             Semaphorus &mdash; A Sempahore Explorer
