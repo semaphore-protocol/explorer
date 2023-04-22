@@ -20,12 +20,12 @@ body {
 }
 
 h1{
-  @apply text-5xl font-semibold leading-tight;
+  @apply text-4xl lg:text-5xl font-semibold leading-tight;
 }
 
 h2 {
   @apply text-3xl font-semibold leading-tight;
 }
 p{
-  @apply leading-7;
+  @apply text-base leading-7;
 }

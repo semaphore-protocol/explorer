@@ -165,7 +165,7 @@ export default async function Home() {
 
   return (
     <motion.main
-      className="min-h-screen p-16 xl:px-36 xl:py-16"
+      className="min-h-screen p-8 lg:p-16 xl:px-36 xl:py-16"
       initial="initial"
       animate="animate"
     >
@@ -180,9 +180,9 @@ export default async function Home() {
           draggable={false}
         />
       </motion.div>
-      <section className="mt-4 flex items-center gap-4">
+      <section className="mt-4 flex flex-col gap-6 xl:flex-row xl:items-center">
         <section className="w-full">
-          <p className="text-lg uppercase tracking-widest opacity-70">
+          <p className="text-sm uppercase tracking-widest opacity-70 xl:text-lg">
             Semaphorus &mdash; A Sempahore Explorer
           </p>
           <div className="p-3"></div>
