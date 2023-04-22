@@ -1,4 +1,3 @@
-"use client";
 import { GroupResponse } from "@semaphore-protocol/data";
 
 export default function GroupCard({ group }: { group: GroupResponse }) {

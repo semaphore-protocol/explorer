@@ -1,7 +1,9 @@
 "use client";
 
+import { slideInRight, staggerChildren } from "@/lib/animations";
 import { searchGroupById } from "@/lib/utils";
 import { GroupResponse } from "@semaphore-protocol/data";
+import { motion } from "framer-motion";
 import { useCallback, useEffect, useState } from "react";
 import GroupCard from "../ui/GroupCard";
 import Search from "../ui/Search";
@@ -24,7 +26,7 @@ function Groups({ groups }: { groups: GroupResponse[] }) {
   }, [searchTerm, _updateSearchTerm]);
 
   return (
-    <section className="flex max-w-2xl flex-col gap-6 rounded-md border border-slate-800 bg-slate-900 p-6">
+    <section className="flex max-w-2xl flex-col gap-6 overflow-hidden rounded-md border border-slate-800 bg-slate-900 p-6">
       <h2>Groups</h2>
       <Search setSearchTerm={_updateSearchTerm} />
       {searchTerm && groupData.length === 0 && (
@@ -32,12 +34,15 @@ function Groups({ groups }: { groups: GroupResponse[] }) {
           We couldn&apos;t find any groups with that id
         </p>
       )}
-      {groupData && (
-        <div className="flex flex-col gap-3">
+
+      {groupData.length > 0 && (
+        <motion.div className="flex flex-col gap-3" variants={staggerChildren}>
           {groupData.map((group) => (
-            <GroupCard key={group.id} group={group} />
+            <motion.div key={group.id} variants={slideInRight}>
+              <GroupCard group={group} />
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       )}
     </section>
   );

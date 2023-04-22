@@ -1,7 +1,10 @@
+"use client";
 import Dashboard from "@/components/Dashboard";
 import Groups from "@/components/Groups";
 import { GroupResponse } from "@semaphore-protocol/data";
 import Image from "next/image";
+import { motion } from "framer-motion";
+import { fadeInUp } from "@/lib/animations";
 
 // const getGroupsFromSubgraph = async ({chain}:{chain?: string}) => {
 //   const semaphoreSubgraph = new SemaphoreSubgraph(chain || "goerli");
@@ -161,7 +164,11 @@ export default async function Home() {
   ];
 
   return (
-    <main className="min-h-screen p-16 xl:px-36 xl:py-16">
+    <motion.main
+      className="min-h-screen p-16 xl:px-36 xl:py-16"
+      initial="initial"
+      animate="animate"
+    >
       <Image
         src={
           "https://em-content.zobj.net/source/microsoft-teams/337/milky-way_1f30c.png"
@@ -177,9 +184,11 @@ export default async function Home() {
             Semaphorus &mdash; A Sempahore Explorer
           </p>
           <div className="p-3"></div>
-          <h1>
-            See what&apos;s happening <br /> on Semaphore
-          </h1>
+          <motion.div variants={fadeInUp} className="overflow-hidden">
+            <h1>
+              See what&apos;s happening <br /> on Semaphore
+            </h1>
+          </motion.div>
           <a
             href="https://semaphore.appliedzkp.org/"
             target="_blank"
@@ -192,6 +201,6 @@ export default async function Home() {
       </section>
       <hr className="my-16 border-slate-700" />
       <Groups groups={groups} />
-    </main>
+    </motion.main>
   );
 }
