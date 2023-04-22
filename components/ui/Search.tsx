@@ -11,7 +11,7 @@ export default function Search({
 
   return (
     <div className="flex items-center justify-center gap-3">
-      <Input placeholder="Search by id" onChange={handleChange} />
+      <Input placeholder="Search by ID" onChange={handleChange} />
       <button className="rounded-md bg-slate-200 p-3 font-semibold text-slate-600">
         Search
       </button>
