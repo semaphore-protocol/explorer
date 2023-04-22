@@ -165,7 +165,7 @@ export default async function Home() {
 
   return (
     <motion.main
-      className="min-h-screen p-8 lg:p-16 xl:px-36 xl:py-16"
+      className="min-h-screen px-4 py-8 lg:p-16 xl:px-36 xl:py-16"
       initial="initial"
       animate="animate"
     >
