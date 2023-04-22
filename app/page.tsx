@@ -222,7 +222,7 @@ export default async function Home() {
       <hr className="my-16 border-slate-700" />
       <div className="flex w-full flex-col gap-6 xl:flex-row">
         <Groups groups={groups} />
-        <section className="flex w-full flex-col gap-6 overflow-hidden rounded-md border border-slate-800 bg-slate-900 p-6">
+        <section className="flex h-40 w-full flex-col gap-6 overflow-hidden rounded-md border border-slate-800 bg-slate-900 p-4 xl:h-auto">
           <div className="flex h-full w-full items-center justify-center rounded-md border-2 border-dashed border-slate-700">
             <p className="text-xl font-medium text-slate-400">
               🚧We&apos;re building group details🚧
