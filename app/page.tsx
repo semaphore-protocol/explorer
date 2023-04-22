@@ -1,10 +1,10 @@
 "use client";
 import Dashboard from "@/components/Dashboard";
 import Groups from "@/components/Groups";
+import { fadeInUp, subtleFadeIn } from "@/lib/animations";
 import { GroupResponse } from "@semaphore-protocol/data";
-import Image from "next/image";
 import { motion } from "framer-motion";
-import { fadeInUp } from "@/lib/animations";
+import Image from "next/image";
 
 // const getGroupsFromSubgraph = async ({chain}:{chain?: string}) => {
 //   const semaphoreSubgraph = new SemaphoreSubgraph(chain || "goerli");
@@ -169,33 +169,53 @@ export default async function Home() {
       initial="initial"
       animate="animate"
     >
-      <Image
-        src={
-          "https://em-content.zobj.net/source/microsoft-teams/337/milky-way_1f30c.png"
-        }
-        alt="Milky Way icon"
-        width={100}
-        height={100}
-        draggable={false}
-      />
+      <motion.div variants={subtleFadeIn} className="relative overflow-hidden">
+        <Image
+          src={
+            "https://em-content.zobj.net/source/microsoft-teams/337/milky-way_1f30c.png"
+          }
+          alt="Milky Way icon"
+          width={100}
+          height={100}
+          draggable={false}
+        />
+      </motion.div>
       <section className="mt-4 flex items-center gap-4">
         <section className="w-full">
           <p className="text-lg uppercase tracking-widest opacity-70">
             Semaphorus &mdash; A Sempahore Explorer
           </p>
           <div className="p-3"></div>
-          <motion.div variants={fadeInUp} className="overflow-hidden">
+          <motion.div variants={fadeInUp}>
             <h1>
               See what&apos;s happening <br /> on Semaphore
             </h1>
           </motion.div>
-          <a
+          <motion.a
             href="https://semaphore.appliedzkp.org/"
             target="_blank"
-            className="mt-3 inline-block border-b-2 border-current py-1 text-slate-600 transition hover:text-slate-800 dark:text-slate-400 dark:hover:text-slate-100"
+            rel="noopener noreferrer"
+            whileHover={{ y: -2, x: 4 }}
+            className="mt-3 inline-flex items-center gap-2 py-1 text-slate-600 transition hover:text-slate-800 dark:text-slate-400 dark:hover:text-blue-300"
           >
-            Learn about Semaphore
-          </a>
+            <span className="border-b-2 border-dotted border-current">
+              Learn about Semaphore
+            </span>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              className="h-4 w-4"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25"
+              />
+            </svg>
+          </motion.a>
         </section>
         <Dashboard groups={groups} />
       </section>

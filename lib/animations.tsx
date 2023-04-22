@@ -1,6 +1,6 @@
 export const fadeInUp = {
   initial: {
-    y: 32,
+    y: 24,
     opacity: 0,
   },
   animate: {
@@ -29,6 +29,19 @@ export const slideInRight = {
   },
   animate: {
     x: 0,
+    opacity: 1,
+    transition: {
+      duration: 1.2,
+      ease: [0.43, 0.13, 0.23, 0.96],
+    },
+  },
+};
+
+export const subtleFadeIn = {
+  initial: {
+    opacity: 0,
+  },
+  animate: {
     opacity: 1,
     transition: {
       duration: 1.2,
