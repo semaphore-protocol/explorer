@@ -3,7 +3,7 @@ import StatCard from "../StatCard";
 
 export default function Dashboard({ groups }: { groups?: GroupResponse[] }) {
   return (
-    <section className="w-full max-w-lg">
+    <section className="w-full max-w-xl overflow-x-auto overflow-y-hidden">
       <div className="xL:gap-6 flex w-full items-center justify-center gap-3">
         {!groups && <p>Loading...</p>}
         {/* Number of groups */}

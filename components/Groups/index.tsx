@@ -26,7 +26,7 @@ function Groups({ groups }: { groups: GroupResponse[] }) {
   }, [searchTerm, _updateSearchTerm]);
 
   return (
-    <section className="flex max-w-2xl flex-col gap-6 overflow-hidden rounded-md border border-slate-800 bg-slate-900 p-6">
+    <section className="flex w-full flex-col gap-6 overflow-hidden rounded-md border border-slate-800 bg-slate-900 p-6">
       <h2>Groups</h2>
       <Search setSearchTerm={_updateSearchTerm} />
       {searchTerm && groupData.length === 0 && (

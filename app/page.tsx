@@ -196,7 +196,7 @@ export default async function Home() {
             target="_blank"
             rel="noopener noreferrer"
             whileHover={{ y: -2, x: 4 }}
-            className="mt-3 inline-flex items-center gap-2 py-1 text-slate-600 transition hover:text-slate-800 dark:text-slate-400 dark:hover:text-blue-300"
+            className="mt-3 inline-flex items-center gap-2 py-1 text-slate-400 transition hover:text-blue-300 active:text-blue-300"
           >
             <span className="border-b-2 border-dotted border-current">
               Learn about Semaphore
@@ -220,7 +220,16 @@ export default async function Home() {
         <Dashboard groups={groups} />
       </section>
       <hr className="my-16 border-slate-700" />
-      <Groups groups={groups} />
+      <div className="flex w-full flex-col gap-6 xl:flex-row">
+        <Groups groups={groups} />
+        <section className="flex w-full flex-col gap-6 overflow-hidden rounded-md border border-slate-800 bg-slate-900 p-6">
+          <div className="flex h-full w-full items-center justify-center rounded-md border-2 border-dashed border-slate-700">
+            <p className="text-xl font-medium text-slate-400">
+              🚧We&apos;re building group details🚧
+            </p>
+          </div>
+        </section>
+      </div>
     </motion.main>
   );
 }
