@@ -2,166 +2,27 @@
 import Dashboard from "@/components/Dashboard";
 import Groups from "@/components/Groups";
 import { fadeInUp, subtleFadeIn } from "@/lib/animations";
-import { GroupResponse } from "@semaphore-protocol/data";
+import { GroupResponse, SemaphoreSubgraph } from "@semaphore-protocol/data";
 import { motion } from "framer-motion";
 import Image from "next/image";
 
-// const getGroupsFromSubgraph = async ({chain}:{chain?: string}) => {
-//   const semaphoreSubgraph = new SemaphoreSubgraph(chain || "goerli");
-//   try {
-//     const groupData = await semaphoreSubgraph.getGroups({
-//       members: true,
-//       verifiedProofs: true,
-//     });
-//     console.log(groupData);
-//     console.log(groupData[0].verifiedProofs);
-//     return groupData;
-//   } catch (e) {
-//     console.log(e);
-//   }
-// };
+const getGroupsFromSubgraph = async (chain?: string) => {
+  const semaphoreSubgraph = new SemaphoreSubgraph(chain || "goerli");
+  try {
+    const groupData = await semaphoreSubgraph.getGroups({
+      members: true,
+      verifiedProofs: true,
+    });
+    console.log(groupData);
+    console.log(groupData[0].verifiedProofs);
+    return groupData;
+  } catch (e) {
+    console.log(e);
+  }
+};
 
 export default async function Home() {
-  // const groups = await getGroupsFromSubgraph();
-  // const group =
-  const groups: GroupResponse[] = [
-    {
-      id: "9213",
-      merkleTree: {
-        root: "19915848860228264978647332772855997232889825934129183693836124570093652495434",
-        depth: 20,
-        zeroValue:
-          "72495600586905503374933132423927094691926252119895994287139394542690893374",
-        numberOfLeaves: 1,
-      },
-      admin: "0xc1c5f42535c3ee4394838c0a64ac98dd317d21fb",
-      members: [
-        "3922432584081017065213385740188209633784757912084488435985094627477698263325",
-      ],
-      verifiedProofs: [
-        {
-          signal:
-            "32745724963520459128167607516703083632076522816298193357160756506792738947072",
-          merkleTreeRoot:
-            "19915848860228264978647332772855997232889825934129183693836124570093652495434",
-          externalNullifier: "9212",
-          nullifierHash:
-            "20931094729402738052789531612146913967438095640177005546904100673123651442821",
-          timestamp: "1680777564",
-        },
-      ],
-    },
-    {
-      id: "9214",
-      merkleTree: {
-        root: "19915848860228264978647332772855997232889825934129183693836124570093652495434",
-        depth: 20,
-        zeroValue:
-          "72495600586905503374933132423927094691926252119895994287139394542690893374",
-        numberOfLeaves: 1,
-      },
-      admin: "0xc1c5f42535c3ee4394838c0a64ac98dd317d21fb",
-      members: [
-        "3922432584081017065213385740188209633784757912084488435985094627477698263325",
-      ],
-      verifiedProofs: [
-        {
-          signal:
-            "32745724963520459128167607516703083632076522816298193357160756506792738947072",
-          merkleTreeRoot:
-            "19915848860228264978647332772855997232889825934129183693836124570093652495434",
-          externalNullifier: "9212",
-          nullifierHash:
-            "20931094729402738052789531612146913967438095640177005546904100673123651442821",
-          timestamp: "1680777564",
-        },
-      ],
-    },
-    {
-      id: "9215",
-      merkleTree: {
-        root: "19915848860228264978647332772855997232889825934129183693836124570093652495434",
-        depth: 20,
-        zeroValue:
-          "72495600586905503374933132423927094691926252119895994287139394542690893374",
-        numberOfLeaves: 6,
-      },
-      admin: "0xc1c5f42535c3ee4394838c0a64ac98dd317d21fb",
-      members: [
-        "3922432584081017065213385740188209633784757912084488435985094627477698263325",
-      ],
-      verifiedProofs: [
-        {
-          signal:
-            "32745724963520459128167607516703083632076522816298193357160756506792738947072",
-          merkleTreeRoot:
-            "19915848860228264978647332772855997232889825934129183693836124570093652495434",
-          externalNullifier: "9212",
-          nullifierHash:
-            "20931094729402738052789531612146913967438095640177005546904100673123651442821",
-          timestamp: "1680777564",
-        },
-        {
-          signal:
-            "32745724963520459128167607516703083632076522816298193357160756506792738947072",
-          merkleTreeRoot:
-            "19915848860228264978647332772855997232889825934129183693836124570093652495434",
-          externalNullifier: "9212",
-          nullifierHash:
-            "20931094729402738052789531612146913967438095640177005546904100673123651442821",
-          timestamp: "1680777564",
-        },
-        {
-          signal:
-            "32745724963520459128167607516703083632076522816298193357160756506792738947072",
-          merkleTreeRoot:
-            "19915848860228264978647332772855997232889825934129183693836124570093652495434",
-          externalNullifier: "9212",
-          nullifierHash:
-            "20931094729402738052789531612146913967438095640177005546904100673123651442821",
-          timestamp: "1680777564",
-        },
-      ],
-    },
-    {
-      id: "9216",
-      merkleTree: {
-        root: "19915848860228264978647332772855997232889825934129183693836124570093652495434",
-        depth: 20,
-        zeroValue:
-          "72495600586905503374933132423927094691926252119895994287139394542690893374",
-        numberOfLeaves: 1,
-      },
-      admin: "0xc1c5f42535c3ee4394838c0a64ac98dd317d21fb",
-      members: [
-        "3922432584081017065213385740188209633784757912084488435985094627477698263325",
-        "3922432584081017065213385740188209633784757912084488435985094627477698263325",
-        "3922432584081017065213385740188209633784757912084488435985094627477698263325",
-      ],
-      verifiedProofs: [
-        {
-          signal:
-            "32745724963520459128167607516703083632076522816298193357160756506792738947072",
-          merkleTreeRoot:
-            "19915848860228264978647332772855997232889825934129183693836124570093652495434",
-          externalNullifier: "9212",
-          nullifierHash:
-            "20931094729402738052789531612146913967438095640177005546904100673123651442821",
-          timestamp: "1680777564",
-        },
-        {
-          signal:
-            "32745724963520459128167607516703083632076522816298193357160756506792738947072",
-          merkleTreeRoot:
-            "19915848860228264978647332772855997232889825934129183693836124570093652495434",
-          externalNullifier: "9212",
-          nullifierHash:
-            "20931094729402738052789531612146913967438095640177005546904100673123651442821",
-          timestamp: "1680777564",
-        },
-      ],
-    },
-  ];
+  const groups = await getGroupsFromSubgraph();
 
   return (
     <motion.main
@@ -205,7 +66,7 @@ export default async function Home() {
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
               viewBox="0 0 24 24"
-              stroke-width="1.5"
+              strokeWidth="1.5"
               stroke="currentColor"
               className="h-4 w-4"
             >
