@@ -1,83 +1,52 @@
-"use client";
 import Dashboard from "@/components/Dashboard";
 import Groups from "@/components/Groups";
-import { fadeInUp, subtleFadeIn } from "@/lib/animations";
-import { GroupResponse, SemaphoreSubgraph } from "@semaphore-protocol/data";
-import { motion } from "framer-motion";
-import Image from "next/image";
+import Header from "@/components/Header";
+import Logo from "@/components/ui/Logo";
+import { GroupWithNetwork } from "@/lib/types";
+import {
+  SemaphoreSubgraph,
+  getSupportedNetworks,
+} from "@semaphore-protocol/data";
 
-const getGroupsFromSubgraph = async (chain?: string) => {
-  const semaphoreSubgraph = new SemaphoreSubgraph(chain || "goerli");
+const getGroupSubgraphData = async (network: string) => {
+  const semaphoreSubgraph = new SemaphoreSubgraph(network);
   try {
     const groupData = await semaphoreSubgraph.getGroups({
       members: true,
       verifiedProofs: true,
     });
-    console.log(groupData);
-    console.log(groupData[0].verifiedProofs);
-    return groupData;
+    const groupsWithNetwork = groupData.map((group) => {
+      return { ...group, network };
+    });
+    return groupsWithNetwork;
   } catch (e) {
     console.log(e);
   }
+};
+
+const getGroupsFromSubgraph = async () => {
+  const networks = getSupportedNetworks();
+  const data: GroupWithNetwork[] = [];
+
+  for (const network of networks) {
+    const groupData = await getGroupSubgraphData(network);
+    if (groupData) {
+      data.push(...groupData);
+      console.log(`Got ${groupData.length} groups from ${network}`);
+    }
+  }
+
+  return data;
 };
 
 export default async function Home() {
   const groups = await getGroupsFromSubgraph();
 
   return (
-    <motion.main
-      className="min-h-screen px-4 py-8 lg:p-16 xl:px-36 xl:py-16"
-      initial="initial"
-      animate="animate"
-    >
-      <motion.div variants={subtleFadeIn} className="relative overflow-hidden">
-        <Image
-          src={
-            "https://em-content.zobj.net/source/microsoft-teams/337/milky-way_1f30c.png"
-          }
-          alt="Milky Way icon"
-          width={100}
-          height={100}
-          draggable={false}
-        />
-      </motion.div>
+    <main className="min-h-screen px-4 py-8 lg:p-16 xl:px-36 xl:py-16">
+      <Logo />
       <section className="mt-4 flex flex-col gap-6 xl:flex-row xl:items-center">
-        <section className="w-full">
-          <p className="text-sm uppercase tracking-widest opacity-70 xl:text-lg">
-            Semaphorus &mdash; A Sempahore Explorer
-          </p>
-          <div className="p-3"></div>
-          <motion.div variants={fadeInUp}>
-            <h1>
-              See what&apos;s happening <br /> on Semaphore
-            </h1>
-          </motion.div>
-          <motion.a
-            href="https://semaphore.appliedzkp.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-            whileHover={{ y: -2, x: 4 }}
-            className="mt-3 inline-flex items-center gap-2 py-1 text-slate-400 transition hover:text-blue-300 active:text-blue-300"
-          >
-            <span className="border-b-2 border-dotted border-current">
-              Learn about Semaphore
-            </span>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth="1.5"
-              stroke="currentColor"
-              className="h-4 w-4"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25"
-              />
-            </svg>
-          </motion.a>
-        </section>
+        <Header />
         <Dashboard groups={groups} />
       </section>
       <hr className="my-16 border-slate-700" />
@@ -91,6 +60,6 @@ export default async function Home() {
           </div>
         </section>
       </div>
-    </motion.main>
+    </main>
   );
 }

@@ -1,6 +1,6 @@
-import { GroupResponse } from "@semaphore-protocol/data";
+import { GroupWithNetwork } from "@/lib/types";
 
-export default function GroupCard({ group }: { group: GroupResponse }) {
+export default function GroupCard({ group }: { group: GroupWithNetwork }) {
   return (
     <div className="flex flex-col justify-between gap-3 rounded-md border border-slate-700 bg-slate-800 p-3 text-sm transition lg:flex-row lg:items-center lg:text-base">
       <div className="flex gap-2">
@@ -8,7 +8,7 @@ export default function GroupCard({ group }: { group: GroupResponse }) {
           {`ID: ${group.id}`}
         </p>
         <p className="rounded-2xl bg-slate-700 px-2 text-slate-300">
-          🤖 Goerli
+          🔗 {group.network}
         </p>
       </div>
       <div className="flex gap-2 text-slate-400">
