@@ -8,6 +8,7 @@ import {
   SemaphoreSubgraph,
   getSupportedNetworks,
 } from "@semaphore-protocol/data";
+import { cache } from "react";
 
 const getGroupSubgraphData = async (network: string) => {
   const semaphoreSubgraph = new SemaphoreSubgraph();
@@ -21,25 +22,30 @@ const getGroupSubgraphData = async (network: string) => {
     });
     return groupsWithNetwork;
   } catch (e) {
-    console.log(e);
-    return;
+    // console.log(e);
+    throw new Error(`Error fetching groups from ${network}`);
   }
 };
 
-const getGroupsFromSubgraph = async () => {
+const getGroupsFromSubgraph = cache(async () => {
   const networks = getSupportedNetworks();
   const data: GroupWithNetwork[] = [];
 
   for (const network of networks) {
-    const groupData = await getGroupSubgraphData(network);
-    if (groupData) {
-      data.push(...groupData);
-      console.log(`Got ${groupData.length} groups from ${network}`);
+    try {
+      const groupData = await getGroupSubgraphData(network);
+      if (groupData) {
+        data.push(...groupData);
+        console.log(`Got ${groupData.length} groups from ${network}`);
+      }
+    } catch (error) {
+      console.log(error);
+      continue;
     }
   }
 
   return data;
-};
+});
 
 export default async function Home() {
   const groups = await getGroupsFromSubgraph();
