@@ -1,15 +1,15 @@
 import { GroupWithNetwork } from "@/lib/types";
-import { formatId } from "@/lib/utils";
+import { formatId, formatName } from "@/lib/utils";
 
 export default function GroupCard({ group }: { group: GroupWithNetwork }) {
   return (
-    <div className="flex flex-col justify-between gap-3 rounded-md border border-slate-700 bg-slate-800 p-3 text-sm transition hover:cursor-pointer hover:bg-slate-700 lg:flex-row lg:items-center lg:text-base">
+    <div className="flex flex-col justify-between gap-3 rounded-md border border-slate-700 bg-slate-800 p-3 text-sm transition hover:cursor-pointer hover:bg-slate-700 sm:flex-row sm:items-center sm:text-base">
       <div className="flex gap-2">
         <p className="rounded-2xl border border-amber-200 px-2 font-medium text-slate-300">
           {`ID: ${formatId(group.id)}`}
         </p>
-        <p className="rounded-2xl bg-slate-600 px-2 text-slate-300">
-          🔗 {group.network}
+        <p className="m-auto rounded-2xl bg-slate-900 px-3 py-1 text-sm text-slate-400">
+          {formatName(group.network)}
         </p>
       </div>
       <div className="flex gap-2 text-slate-400">

@@ -2,25 +2,47 @@
 
 import { slideInRight, staggerChildren } from "@/lib/animations";
 import { GroupWithNetwork } from "@/lib/types";
-import { searchGroupById } from "@/lib/utils";
+import { filterGroups, formatName } from "@/lib/utils";
 import { motion } from "framer-motion";
 import { useCallback, useEffect, useState } from "react";
 import GroupCard from "../ui/GroupCard";
 import Search from "../ui/Search";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "../ui/select";
 
-function Groups({ groups }: { groups?: GroupWithNetwork[] }) {
+function Groups({
+  groups,
+  networks,
+}: {
+  groups: GroupWithNetwork[];
+  networks: string[];
+}) {
+  const [network, setNetwork] = useState("");
   const [searchTerm, setSearchTerm] = useState("");
-  const [groupData, setGroupData] = useState<GroupWithNetwork[]>([]);
+  const [groupData, setGroupData] = useState<GroupWithNetwork[]>(groups);
+
+  const _filterGroups = useCallback(() => {
+    setGroupData(filterGroups(groups, searchTerm, network));
+  }, [groups, network, searchTerm]);
 
   const _updateSearchTerm = useCallback(
     (newTerm: string) => {
-      if (!groups) return;
       setSearchTerm(newTerm);
-      setGroupData(searchGroupById(groups, searchTerm));
-      console.log({ searchTerm });
+      _filterGroups();
     },
-    [groups, searchTerm]
+    [_filterGroups]
   );
+
+  // Handle select change
+  const handleNetworkSelect = (value: string) => {
+    setNetwork(value);
+    _filterGroups();
+  };
 
   useEffect(() => {
     _updateSearchTerm(searchTerm);
@@ -34,6 +56,21 @@ function Groups({ groups }: { groups?: GroupWithNetwork[] }) {
     >
       <h2>Groups</h2>
       <Search setSearchTerm={_updateSearchTerm} />
+
+      <Select onValueChange={handleNetworkSelect}>
+        <SelectTrigger className="w-[180px]">
+          <SelectValue placeholder="Filter by network" />
+        </SelectTrigger>
+        <SelectContent>
+          <SelectItem value="all">All networks</SelectItem>
+          {networks.map((network) => (
+            <SelectItem key={network} value={network}>
+              {formatName(network)}
+            </SelectItem>
+          ))}
+        </SelectContent>
+      </Select>
+
       {searchTerm && groupData.length === 0 && (
         <p className="text-center text-lg text-slate-600 dark:text-slate-400">
           We couldn&apos;t find any groups with that id
@@ -41,9 +78,17 @@ function Groups({ groups }: { groups?: GroupWithNetwork[] }) {
       )}
 
       {groupData.length > 0 && (
-        <motion.div className="flex flex-col gap-3" variants={staggerChildren}>
+        <motion.div
+          className="flex max-h-screen flex-col gap-3 overflow-y-auto overflow-x-hidden p-2"
+          variants={staggerChildren}
+        >
           {groupData.map((group, index) => (
-            <motion.div key={index} variants={slideInRight}>
+            <motion.div
+              key={index}
+              variants={slideInRight}
+              tabIndex={index + 1}
+              className="ring-offset-1 ring-offset-transparent focus:rounded-md focus:outline-none focus:ring-1 focus:ring-amber-400"
+            >
               <GroupCard group={group} />
             </motion.div>
           ))}
