@@ -2,9 +2,9 @@ import Image from "next/image";
 
 export default function Loading() {
   return (
-    <main className="flex h-screen flex-col items-center justify-center">
+    <main className="flex h-screen flex-col items-center justify-center gap-4">
       <h1>Semaphorus</h1>
-      <p>Loading data...</p>
+      <p>Loading group data...</p>
       <Image
         src={
           "https://em-content.zobj.net/source/microsoft-teams/337/rocket_1f680.png"
