@@ -9,7 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@semaphore-protocol/data": "^3.6.0",
+    "@semaphore-protocol/data": "^3.9.0",
     "@types/node": "18.15.11",
     "@types/react": "18.0.35",
     "@types/react-dom": "18.0.11",
