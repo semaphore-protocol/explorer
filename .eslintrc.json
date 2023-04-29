@@ -3,7 +3,7 @@
     "plugins": ["tailwindcss"],
     "settings": {
         "tailwindcss": {
-            "calless": ["tw"]
+          "calless": ["cn"]
         }
     }
 }
