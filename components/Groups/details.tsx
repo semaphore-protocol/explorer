@@ -32,7 +32,7 @@ export const Details = ({ group }: Props) => {
     >
       {!group && (
         <div className="flex h-full w-full items-center justify-center rounded-md border-2 border-dashed border-slate-700">
-          <p className="text-xl font-medium text-slate-400">
+          <p className="p-4 text-sm font-medium text-slate-400 lg:text-xl">
             Select a group to see more details ✨
           </p>
         </div>
@@ -50,7 +50,7 @@ export const Details = ({ group }: Props) => {
           </div>
           <p className="text-slate-400">Members</p>
           <motion.div
-            className="flex max-h-60 flex-col gap-3 overflow-y-auto overflow-x-hidden p-2"
+            className="flex max-h-60 flex-col gap-3 overflow-auto p-2"
             variants={staggerChildren}
           >
             {!group.members?.length && (
