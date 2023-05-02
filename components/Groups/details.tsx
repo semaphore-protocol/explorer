@@ -1,4 +1,4 @@
-import { slideInRight, staggerChildren } from "@/lib/animations";
+import { fadeInUp, staggerChildren } from "@/lib/animations";
 import { GroupWithNetwork } from "@/lib/types";
 import {
   formatId,
@@ -10,11 +10,7 @@ import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import { VerifiedProof } from "../ui/VerifiedProof";
 
-interface Props {
-  group: GroupWithNetwork | undefined;
-}
-
-export const Details = ({ group }: Props) => {
+export const Details = ({ group }: { group?: GroupWithNetwork }) => {
   const [emojis, setEmojis] = useState<string[]>(
     getRandomEmoji(group?.members?.length)
   );
@@ -64,7 +60,7 @@ export const Details = ({ group }: Props) => {
                 <motion.div
                   className="flex gap-2"
                   key={index}
-                  variants={slideInRight}
+                  variants={fadeInUp}
                   tabIndex={index + 1}
                 >
                   <p>{emojis[index]}</p>
@@ -87,7 +83,7 @@ export const Details = ({ group }: Props) => {
               group.verifiedProofs?.map((proof, index) => (
                 <motion.div
                   key={index}
-                  variants={slideInRight}
+                  variants={fadeInUp}
                   tabIndex={index + 1}
                   className="ring-offset-1 ring-offset-transparent focus:rounded-md focus:outline-none focus:ring-1 focus:ring-amber-400"
                 >

@@ -8,20 +8,20 @@ import { useCallback, useEffect, useState } from "react";
 import GroupCard from "../ui/GroupCard";
 import Search from "../ui/Search";
 import {
-	Select,
-	SelectContent,
-	SelectItem,
-	SelectTrigger,
-	SelectValue,
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
 } from "../ui/select";
 
-interface Props {
+interface GroupsNetworksAndClickProps {
   groups: GroupWithNetwork[];
   networks: string[];
   onClick: (group: GroupWithNetwork) => void;
 }
 
-function Groups({ groups, networks, onClick }: Props) {
+function Groups({ groups, networks, onClick }: GroupsNetworksAndClickProps) {
   const [network, setNetwork] = useState("");
   const [searchTerm, setSearchTerm] = useState("");
   const [groupData, setGroupData] = useState<GroupWithNetwork[]>(groups);

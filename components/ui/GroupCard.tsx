@@ -1,12 +1,12 @@
 import { GroupWithNetwork } from "@/lib/types";
 import { formatId, formatName } from "@/lib/utils";
 
-interface Props {
+interface GroupAndClickProps {
   group: GroupWithNetwork;
   onClick: (group: GroupWithNetwork) => void;
 }
 
-export default function GroupCard({ group, onClick }: Props) {
+export default function GroupCard({ group, onClick }: GroupAndClickProps) {
   return (
     <div
       className="flex flex-col justify-between gap-3 rounded-md border border-slate-700 bg-slate-800 p-3 text-sm transition hover:cursor-pointer hover:bg-slate-700 sm:flex-row sm:items-center sm:text-base"

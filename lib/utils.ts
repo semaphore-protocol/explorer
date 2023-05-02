@@ -49,7 +49,7 @@ export function extractPresentNetworks(groups: GroupWithNetwork[]) {
 }
 
 export function getRandomEmoji(count: number | undefined): string[] {
-  if (!count) return [];
+  if (!count) count = 1;
   const emojis = [
     "😀",
     "😂",
