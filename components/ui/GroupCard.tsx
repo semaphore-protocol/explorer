@@ -1,9 +1,17 @@
 import { GroupWithNetwork } from "@/lib/types";
 import { formatId, formatName } from "@/lib/utils";
 
-export default function GroupCard({ group }: { group: GroupWithNetwork }) {
+interface GroupAndClickProps {
+  group: GroupWithNetwork;
+  onClick: (group: GroupWithNetwork) => void;
+}
+
+export default function GroupCard({ group, onClick }: GroupAndClickProps) {
   return (
-    <div className="flex flex-col justify-between gap-3 rounded-md border border-slate-700 bg-slate-800 p-3 text-sm transition hover:cursor-pointer hover:bg-slate-700 sm:flex-row sm:items-center sm:text-base">
+    <div
+      className="flex flex-col justify-between gap-3 rounded-md border border-slate-700 bg-slate-800 p-3 text-sm transition hover:cursor-pointer hover:bg-slate-700 sm:flex-row sm:items-center sm:text-base"
+      onClick={() => onClick(group)}
+    >
       <div className="flex gap-2">
         <p className="rounded-2xl border border-amber-200 px-2 font-medium text-slate-300">
           {`ID: ${formatId(group.id)}`}

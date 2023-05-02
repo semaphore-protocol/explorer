@@ -47,3 +47,87 @@ export function extractPresentNetworks(groups: GroupWithNetwork[]) {
     return acc;
   }, [] as string[]);
 }
+
+export function getRandomEmoji(count: number | undefined): string[] {
+  if (!count) count = 1;
+  const emojis = [
+    "😀",
+    "😂",
+    "😊",
+    "🤔",
+    "🤗",
+    "🙄",
+    "😴",
+    "🤢",
+    "😎",
+    "🥳",
+    "💩",
+    "🐶",
+    "🐱",
+    "🐵",
+    "🦊",
+    "🐻",
+    "🐨",
+    "🐯",
+    "🦁",
+    "🐮",
+    "🐷",
+    "🦄",
+    "🐸",
+    "🐤",
+    "🍕",
+    "🍔",
+    "🌮",
+    "🍰",
+    "🍩",
+    "🍭",
+    "🍺",
+    "🍹",
+    "🚀",
+    "🚕",
+    "🚲",
+    "🚁",
+    "🛴",
+    "⚽️",
+    "🏀",
+    "🏈",
+    "🎾",
+    "🏓",
+    "🎮",
+    "🎸",
+    "🎧",
+  ];
+
+  const result = [];
+
+  for (let i = 0; i < count; i++) {
+    const randomIndex = Math.floor(Math.random() * emojis.length);
+    const randomEmoji = emojis[randomIndex];
+    result.push(randomEmoji);
+  }
+
+  return result;
+}
+
+export function truncateHash(
+  hash: string | undefined,
+  length: number = 50
+): string {
+  if (!hash) return "";
+  const prefixLength = Math.floor(length / 2);
+  const suffixLength = length - prefixLength;
+  return `${hash.slice(0, prefixLength)}...${hash.slice(-suffixLength)}`;
+}
+
+export function formatDate(timestamp: string | undefined): string {
+  if (!timestamp) return "";
+  const milliseconds = new Date(Number(timestamp) * 1000);
+  const date = new Date(milliseconds);
+  const options: Intl.DateTimeFormatOptions = {
+    day: "numeric",
+    month: "short",
+    year: "numeric",
+  };
+  const formattedDate = new Intl.DateTimeFormat("en-US", options).format(date);
+  return formattedDate;
+}
