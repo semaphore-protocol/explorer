@@ -17,14 +17,10 @@ export const GroupsDisplay = ({ groups, networks }: Props) => {
   const scrollToDetails = useCallback(() => {
     if (!detailsRef.current) return;
     const { current: detailsComponent } = detailsRef;
-    // Get the bounding rectangle of the element relative to the viewport
     const rect = detailsComponent.getBoundingClientRect();
-    // Check if the element is currently visible
     if (rect.top >= 0 && rect.bottom <= window.innerHeight) {
-      // Element is already in view, do nothing
       return;
     }
-    // Element is not currently in view, scroll to it
     detailsComponent.scrollIntoView({ behavior: "smooth" });
   }, [detailsRef]);
 
