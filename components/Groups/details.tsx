@@ -10,7 +10,12 @@ import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import { VerifiedProof } from "../ui/VerifiedProof";
 
-export const Details = ({ group }: { group?: GroupWithNetwork }) => {
+interface GroupAndRefProps {
+  group?: GroupWithNetwork;
+  forwardRef?: React.RefObject<HTMLDivElement>;
+}
+
+export const Details = ({ group, forwardRef }: GroupAndRefProps) => {
   const [emojis, setEmojis] = useState<string[]>(
     getRandomEmoji(group?.members?.length)
   );
@@ -22,6 +27,7 @@ export const Details = ({ group }: { group?: GroupWithNetwork }) => {
 
   return (
     <motion.section
+      ref={forwardRef}
       className="flex w-full flex-col gap-6 overflow-hidden rounded-md border border-slate-800 bg-slate-900 p-4 xl:h-auto"
       initial="initial"
       animate="animate"
