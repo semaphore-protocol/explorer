@@ -1,9 +1,9 @@
 import { formatDate, truncateHash } from "@/lib/utils";
 import {
-	Accordion,
-	AccordionContent,
-	AccordionItem,
-	AccordionTrigger,
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
 } from "./Accordion";
 
 interface Props {
@@ -18,7 +18,9 @@ export const VerifiedProof = ({ proof }: Props) => {
       collapsible
     >
       <AccordionItem value={proof.timestamp}>
-        <AccordionTrigger>{formatDate(proof.timestamp)}</AccordionTrigger>
+        <AccordionTrigger className="cursor-pointer hover:font-medium hover:text-amber-400">
+          {formatDate(proof.timestamp)}
+        </AccordionTrigger>
         <AccordionContent>
           <div className="flex flex-col items-start">
             <article>

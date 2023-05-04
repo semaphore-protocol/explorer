@@ -9,6 +9,7 @@ import {
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import { VerifiedProof } from "../ui/VerifiedProof";
+import Copy from "../ui/copy";
 
 interface GroupAndRefProps {
   group?: GroupWithNetwork;
@@ -42,10 +43,11 @@ export const Details = ({ group, forwardRef }: GroupAndRefProps) => {
       {group && (
         <>
           <h2>Details</h2>
-          <div className="flex items-center justify-between">
+          <div className="flex items-center justify-start gap-3">
             <p className="rounded-2xl border border-amber-200 px-2 font-medium text-slate-300">
               {`ID: ${formatId(group.id)}`}
             </p>
+            <Copy copy={group.id} />
             <p className="rounded-2xl bg-slate-700 px-3 py-1 text-sm text-slate-300">
               {formatName(group.network)}
             </p>
@@ -64,13 +66,14 @@ export const Details = ({ group, forwardRef }: GroupAndRefProps) => {
               group.members?.length > 0 &&
               group.members?.map((member, index) => (
                 <motion.div
-                  className="flex gap-2"
+                  className="flex items-center gap-2"
                   key={index}
                   variants={fadeInUp}
                   tabIndex={index + 1}
                 >
                   <p>{emojis[index]}</p>
                   <p>{truncateHash(member)}</p>
+                  <Copy copy={member} />
                 </motion.div>
               ))}
           </motion.div>

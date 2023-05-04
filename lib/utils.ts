@@ -131,3 +131,15 @@ export function formatDate(timestamp: string | undefined): string {
   const formattedDate = new Intl.DateTimeFormat("en-US", options).format(date);
   return formattedDate;
 }
+
+export const copyToClipboard = async (text: string) => {
+  let copied = false;
+  try {
+    await navigator.clipboard.writeText(text);
+    copied = true;
+  } catch (err) {
+    console.error("Failed to copy to clipboard:", err);
+    copied = false;
+  }
+  return copied;
+};
