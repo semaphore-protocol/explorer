@@ -9,8 +9,14 @@ import {
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import { VerifiedProof } from "../ui/VerifiedProof";
+import Copy from "../ui/copy";
 
-export const Details = ({ group }: { group?: GroupWithNetwork }) => {
+interface GroupAndRefProps {
+  group?: GroupWithNetwork;
+  forwardRef?: React.RefObject<HTMLDivElement>;
+}
+
+export const Details = ({ group, forwardRef }: GroupAndRefProps) => {
   const [emojis, setEmojis] = useState<string[]>(
     getRandomEmoji(group?.members?.length)
   );
@@ -22,6 +28,7 @@ export const Details = ({ group }: { group?: GroupWithNetwork }) => {
 
   return (
     <motion.section
+      ref={forwardRef}
       className="flex w-full flex-col gap-6 overflow-hidden rounded-md border border-slate-800 bg-slate-900 p-4 xl:h-auto"
       initial="initial"
       animate="animate"
@@ -36,10 +43,11 @@ export const Details = ({ group }: { group?: GroupWithNetwork }) => {
       {group && (
         <>
           <h2>Details</h2>
-          <div className="flex items-center justify-between">
+          <div className="flex items-center justify-start gap-3">
             <p className="rounded-2xl border border-amber-200 px-2 font-medium text-slate-300">
               {`ID: ${formatId(group.id)}`}
             </p>
+            <Copy copy={group.id} />
             <p className="rounded-2xl bg-slate-700 px-3 py-1 text-sm text-slate-300">
               {formatName(group.network)}
             </p>
@@ -58,13 +66,14 @@ export const Details = ({ group }: { group?: GroupWithNetwork }) => {
               group.members?.length > 0 &&
               group.members?.map((member, index) => (
                 <motion.div
-                  className="flex gap-2"
+                  className="flex items-center gap-2"
                   key={index}
                   variants={fadeInUp}
                   tabIndex={index + 1}
                 >
                   <p>{emojis[index]}</p>
                   <p>{truncateHash(member)}</p>
+                  <Copy copy={member} />
                 </motion.div>
               ))}
           </motion.div>
