@@ -22,18 +22,18 @@ export default function GroupCard({ group, onClick }: GroupAndClickProps) {
       </div>
       <div className="flex gap-2 text-slate-400">
         <p>
+          👋🏽{" "}
+          {group.members?.length === 1
+            ? "1 member"
+            : `${group.members?.length} members`}
+        </p>
+        <p>
           ✅{" "}
           {group.verifiedProofs?.length === 1
             ? "1 verified proof"
             : `${group.verifiedProofs?.length} verified proofs`}
         </p>
         <p className="text-slate-400">|</p>
-        <p>
-          👋🏽{" "}
-          {group.members?.length === 1
-            ? "1 member"
-            : `${group.members?.length} members`}
-        </p>
       </div>
     </div>
   );
