@@ -27,13 +27,13 @@ export default function GroupCard({ group, onClick }: GroupAndClickProps) {
             ? "1 member"
             : `${group.members?.length} members`}
         </p>
+        <p className="text-slate-400">|</p>
         <p>
           ✅{" "}
           {group.verifiedProofs?.length === 1
             ? "1 verified proof"
             : `${group.verifiedProofs?.length} verified proofs`}
         </p>
-        <p className="text-slate-400">|</p>
       </div>
     </div>
   );

@@ -1,25 +1,46 @@
 import { fadeInUp, staggerChildren } from "@/lib/animations";
 import { GroupWithNetwork } from "@/lib/types";
 import {
+  formatDate,
   formatId,
   formatName,
   getRandomEmoji,
   truncateHash,
 } from "@/lib/utils";
+import { GroupResponse } from "@semaphore-protocol/data";
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import { VerifiedProof } from "../ui/VerifiedProof";
 import Copy from "../ui/copy";
-
 interface GroupAndRefProps {
   group?: GroupWithNetwork;
   forwardRef?: React.RefObject<HTMLDivElement>;
 }
-
 export const Details = ({ group, forwardRef }: GroupAndRefProps) => {
   const [emojis, setEmojis] = useState<string[]>(
     getRandomEmoji(group?.members?.length)
   );
+
+  const groupProofsByTimestamp = (group: GroupWithNetwork | undefined) => {
+    if (!group) return;
+    if (!group?.verifiedProofs) return;
+
+    const value = group.verifiedProofs.reduce(
+      (acc: Record<string, GroupResponse["verifiedProofs"]>, proof: any) => {
+        if (!proof) return acc;
+        const tDate = formatDate(proof.timestamp);
+        if (!acc[tDate]) {
+          acc[tDate] = [];
+        }
+        acc[tDate]?.push(proof);
+        return acc;
+      },
+      {}
+    );
+    return value;
+  };
+
+  const groupedTimestamps = groupProofsByTimestamp(group);
 
   useEffect(() => {
     if (!group) return;
@@ -87,18 +108,9 @@ export const Details = ({ group, forwardRef }: GroupAndRefProps) => {
                 We couldn&apos;t find any verified proofs
               </p>
             )}
-            {group.verifiedProofs &&
-              group.verifiedProofs?.length > 0 &&
-              group.verifiedProofs?.map((proof, index) => (
-                <motion.div
-                  key={index}
-                  variants={fadeInUp}
-                  tabIndex={index + 1}
-                  className="ring-offset-1 ring-offset-transparent focus:rounded-md focus:outline-none focus:ring-1 focus:ring-amber-400"
-                >
-                  <VerifiedProof proof={proof} />
-                </motion.div>
-              ))}
+            {group.verifiedProofs && (
+              <VerifiedProof records={groupedTimestamps} />
+            )}
           </motion.div>
         </>
       )}
