@@ -7,7 +7,7 @@ const dmSans = DM_Sans({
 });
 
 export const metadata = {
-  title: "Semaphorus: A Sempahore Explorer",
+  title: "Semaphorus: A Semaphore Explorer",
   description:
     "This Semaphore explorer is a blockchain data visualization tool that enables users to view and explore on-chain data from multiple networks in a user-friendly way. Powered by the Semaphore subgraph and the @semaphore-protocol/data library, this read-only web application provides a comprehensive and intuitive interface for analyzing blockchain data, making it an invaluable resource for developers in the cryptocurrency ecosystem.",
 };

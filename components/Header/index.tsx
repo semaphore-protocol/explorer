@@ -6,7 +6,7 @@ function Header() {
   return (
     <motion.section className="w-full" initial="initial" animate="animate">
       <p className="text-sm uppercase tracking-widest opacity-70 xl:text-lg">
-        Semaphorus &mdash; A Sempahore Explorer
+        Semaphorus &mdash; A Semaphore Explorer
       </p>
       <div className="p-3"></div>
       <motion.div variants={fadeInUp}>
