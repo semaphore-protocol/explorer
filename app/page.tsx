@@ -31,9 +31,11 @@ const getGroupsFromSubgraph = cache(async () => {
   const networks = getSupportedNetworks();
   const data: GroupWithNetwork[] = [];
 
+  console.log(networks);
   for (const network of networks) {
     try {
       const groupData = await getGroupSubgraphData(network);
+      console.log(groupData);
       if (groupData) {
         data.push(...groupData);
         console.log(`Got ${groupData.length} groups from ${network}`);

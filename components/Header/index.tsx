@@ -15,7 +15,7 @@ function Header() {
         </h1>
       </motion.div>
       <motion.a
-        href="https://semaphore.appliedzkp.org/"
+        href="https://semaphore.pse.dev/"
         target="_blank"
         rel="noopener noreferrer"
         whileHover={{ y: -2, x: 4 }}
