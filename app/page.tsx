@@ -4,18 +4,16 @@ import Header from "@/components/Header";
 import Logo from "@/components/ui/Logo";
 import { GroupWithNetwork } from "@/lib/types";
 import { extractPresentNetworks } from "@/lib/utils";
-import {
-  SemaphoreSubgraph,
-  getSupportedNetworks,
-} from "@semaphore-protocol/data";
+import { SemaphoreSubgraph } from "@semaphore-protocol/data";
+import { supportedNetworks } from "@semaphore-protocol/utils";
 import { cache } from "react";
 
 const getGroupSubgraphData = async (network: string) => {
-  const semaphoreSubgraph = new SemaphoreSubgraph();
+  const semaphoreSubgraph = new SemaphoreSubgraph(network);
   try {
     const groupData = await semaphoreSubgraph.getGroups({
       members: true,
-      verifiedProofs: true,
+      validatedProofs: true,
     });
     const groupsWithNetwork = groupData.map((group) => {
       return { ...group, network };
@@ -28,14 +26,14 @@ const getGroupSubgraphData = async (network: string) => {
 };
 
 const getGroupsFromSubgraph = cache(async () => {
-  const networks = getSupportedNetworks();
+  const networks = Object.keys(supportedNetworks);
   const data: GroupWithNetwork[] = [];
 
   console.log(networks);
   for (const network of networks) {
     try {
       const groupData = await getGroupSubgraphData(network);
-      console.log(groupData);
+
       if (groupData) {
         data.push(...groupData);
         console.log(`Got ${groupData.length} groups from ${network}`);

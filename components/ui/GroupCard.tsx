@@ -30,9 +30,9 @@ export default function GroupCard({ group, onClick }: GroupAndClickProps) {
         <p className="text-slate-400">|</p>
         <p>
           ✅{" "}
-          {group.verifiedProofs?.length === 1
-            ? "1 verified proof"
-            : `${group.verifiedProofs?.length} verified proofs`}
+          {group.validatedProofs?.length === 1
+            ? "1 validated proof"
+            : `${group.validatedProofs?.length} validated proofs`}
         </p>
       </div>
     </div>
