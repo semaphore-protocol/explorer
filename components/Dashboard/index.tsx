@@ -1,4 +1,4 @@
-import { GroupResponse, SemaphoreSubgraph } from "@semaphore-protocol/data";
+import { GroupResponse } from "@semaphore-protocol/data";
 import StatCard from "../StatCard";
 
 export default function Dashboard({ groups }: { groups?: GroupResponse[] }) {
@@ -19,7 +19,7 @@ export default function Dashboard({ groups }: { groups?: GroupResponse[] }) {
             <StatCard
               title="total proofs"
               value={`${groups.reduce((proofCount, currGroup) => {
-                return (proofCount += currGroup?.verifiedProofs?.length || 0);
+                return (proofCount += currGroup?.validatedProofs?.length || 0);
               }, 0)}`}
             />
           </>

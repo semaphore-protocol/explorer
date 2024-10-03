@@ -7,10 +7,10 @@ import {
   AccordionTrigger,
 } from "./Accordion";
 interface Props {
-  records: Record<string, GroupResponse["verifiedProofs"]> | undefined;
+  records: Record<string, GroupResponse["validatedProofs"]> | undefined;
 }
 
-export const VerifiedProof = ({ records }: Props) => {
+export const ValidatedProof = ({ records }: Props) => {
   if (!records) return null;
   return (
     <>
@@ -29,20 +29,20 @@ export const VerifiedProof = ({ records }: Props) => {
               <AccordionContent key={index}>
                 <div className="flex flex-col items-start">
                   <article>
-                    <h6 className="text-slate-400">External Nullifier</h6>
-                    <p>{proof?.externalNullifier}</p>
+                    <h6 className="text-slate-400">Scope</h6>
+                    <p>{proof?.scope}</p>
                   </article>
                   <article>
                     <h6 className="text-slate-400">Merkle Tree Root</h6>
                     <p>{truncateHash(proof.merkleTreeRoot)}</p>
                   </article>
                   <article>
-                    <h6 className="text-slate-400">Nullifier Hash</h6>
-                    <p>{truncateHash(proof.nullifierHash)}</p>
+                    <h6 className="text-slate-400">Nullifier</h6>
+                    <p>{truncateHash(proof.nullifier)}</p>
                   </article>
                   <article>
-                    <h6 className="text-slate-400">Signal</h6>
-                    <p>{truncateHash(proof.signal)}</p>
+                    <h6 className="text-slate-400">Message</h6>
+                    <p>{truncateHash(proof.message)}</p>
                   </article>
                 </div>
               </AccordionContent>

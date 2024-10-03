@@ -10,7 +10,7 @@ import {
 import { GroupResponse } from "@semaphore-protocol/data";
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
-import { VerifiedProof } from "../ui/VerifiedProof";
+import { ValidatedProof } from "../ui/ValidatedProof";
 import Copy from "../ui/copy";
 interface GroupAndRefProps {
   group?: GroupWithNetwork;
@@ -23,10 +23,10 @@ export const Details = ({ group, forwardRef }: GroupAndRefProps) => {
 
   const groupProofsByTimestamp = (group: GroupWithNetwork | undefined) => {
     if (!group) return;
-    if (!group?.verifiedProofs) return;
+    if (!group?.validatedProofs) return;
 
-    const value = group.verifiedProofs.reduce(
-      (acc: Record<string, GroupResponse["verifiedProofs"]>, proof: any) => {
+    const value = group.validatedProofs.reduce(
+      (acc: Record<string, GroupResponse["validatedProofs"]>, proof: any) => {
         if (!proof) return acc;
         const tDate = formatDate(proof.timestamp);
         if (!acc[tDate]) {
@@ -98,18 +98,18 @@ export const Details = ({ group, forwardRef }: GroupAndRefProps) => {
                 </motion.div>
               ))}
           </motion.div>
-          <p className="text-slate-400">Verified Proofs</p>
+          <p className="text-slate-400">Validated Proofs</p>
           <motion.div
             className="flex max-h-screen flex-col gap-3 overflow-y-auto overflow-x-hidden p-2"
             variants={staggerChildren}
           >
-            {!group.verifiedProofs?.length && (
+            {!group.validatedProofs?.length && (
               <p className="text-sm text-slate-600 dark:text-slate-400">
-                We couldn&apos;t find any verified proofs
+                We couldn&apos;t find any validated proofs
               </p>
             )}
-            {group.verifiedProofs && (
-              <VerifiedProof records={groupedTimestamps} />
+            {group.validatedProofs && (
+              <ValidatedProof records={groupedTimestamps} />
             )}
           </motion.div>
         </>
