@@ -1,3 +1,6 @@
+> [!IMPORTANT]  
+> This Semaphore Explorer application was moved to the [Semaphore Extensions repo](https://github.com/semaphore-protocol/extensions) inside the `apps` folder. You can find it [here](https://github.com/semaphore-protocol/extensions/tree/main/apps/explorer).
+
 <h1 align="center">
   Semaphorus: A Semaphore explorer
 </h1>
